@@ -1,30 +1,27 @@
 
 import './App.css';
-import Navbar from './Navbar';
-import { BrowserRouter, Routes,Route } from 'react-router-dom';
-import Home from './Home';
-import Card from './Card';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, decrement , add} from './Redux/Reducer';
 
 const App = () => {
+   
+  const dispatch = useDispatch()
 
+  let nbr = 6
 
-
+   const count = useSelector(state => state.CountRedux.count)
 
   return (
     
     <div className="App">
+    
+    <button onClick={() => dispatch(increment())}>+</button>
+    <p>{count}</p>
+    <button onClick={()=> dispatch(decrement())}>-</button>
+    <button onClick={()=> dispatch(add(nbr))}>Add nbr</button>
+    
+    
   
-    
-    
-    <BrowserRouter>
-    <Navbar/>
-    <Routes>
-      <Route  path="/" element={<Home/>}/>
-      <Route path= "/Cards" element= {<Card/>}/>
-    </Routes>
-    </BrowserRouter>
-
-
     </div>
   );
 }
